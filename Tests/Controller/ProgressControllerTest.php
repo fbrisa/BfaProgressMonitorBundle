@@ -4,7 +4,7 @@ namespace Bfa\ProgressMonitorBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class DefaultControllerTest extends WebTestCase
+class ProgressControllerTest extends WebTestCase
 {
     public function testIndex()
     {
