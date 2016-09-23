@@ -1,0 +1,30 @@
+{
+    "name" : "bfa/progressmonitorbundle",
+    "description" : "A bundle to handle progress via ajax",
+    "type" : "symfony-bundle",
+    "authors" : [{
+        "name" : "Francesco Angelo Brisa",
+        "email" : "fbrisa@gmail.com"
+    }],
+    "keywords" : [
+        "progress monitor bundle"
+    ],
+    "license" : [
+        "GPL"
+    ],
+    "require" : {
+    },
+    "autoload" : {
+        "psr-0" : {
+            "Bfa\\ProgressMonitorBundle" : ""
+        }
+    },
+    "target-dir" : "Bfa/ProgressMonitorBundle",
+    "repositories" : [{
+    }],
+    "extra" : {
+    "branch-alias" : {
+            "dev-master" : "0.1-dev"
+        }
+    }
+}
