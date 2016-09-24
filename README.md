@@ -1,6 +1,6 @@
 Requirements:
-https://symfony.com/doc/master/bundles/FOSJsRoutingBundle/index.html
-
+* https://symfony.com/doc/master/bundles/FOSJsRoutingBundle/index.html
+* jQuery
 
 Installation:
 1) Add to composer.json:

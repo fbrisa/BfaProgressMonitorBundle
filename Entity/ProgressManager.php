@@ -27,7 +27,7 @@ class ProgressManager {
      * @returns Progress
      */
     public function caricaDaId($id) {
-        $entity=$this->em->getRepository("BfaCommonBundle:Progress")->find($id);
+        $entity=$this->em->getRepository("BfaProgressMonitorBundle:Progress")->find($id);
         
         return $entity;
     }
@@ -37,7 +37,7 @@ class ProgressManager {
      * @returns Progress
      */
     public function caricaDaUid($uid) {
-        $entity=$this->em->getRepository("BfaCommonBundle:Progress")->findOneByUid($uid);
+        $entity=$this->em->getRepository("BfaProgressMonitorBundle:Progress")->findOneByUid($uid);
         
         return $entity;
     }

@@ -9,7 +9,7 @@ progressWork = function (uid, progressbar, elementotesto) {
             progressbar.attr('aria-valuemax', res.max);
             progressbar.css('width', 100 * res.progress / res.max + "%");
             var v = 100 * res.progress / res.max;
-            progressbar.html(v.formatMoney(0, ',', '') + "%");
+            progressbar.html(v + "%");
             if (res.data) {
                 if (res.data.html) {
                     elementotesto.html(res.data.html);

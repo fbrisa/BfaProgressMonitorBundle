@@ -16,7 +16,7 @@ class ProgressController extends Controller {
      */    
     public function progressAction($uid) {
         $progressManager=$this->get('bfa.progress');        
-        /*@var $progressManager \Bfa\CommonBundle\Entity\ProgressManager */
+        /*@var $progressManager \Bfa\ProgressMonitorBundle\Entity\ProgressManager */
 
         $res=$progressManager->progress($uid);
 
@@ -28,7 +28,7 @@ class ProgressController extends Controller {
      */        
     public function quitAction($uid) {
         $progressManager=$this->get('bfa.progress');        
-        /*@var $progressManager \Bfa\CommonBundle\Entity\ProgressManager */
+        /*@var $progressManager \Bfa\ProgressMonitorBundle\Entity\ProgressManager */
 
         $progressManager->quitProgress($uid);
         
@@ -38,7 +38,7 @@ class ProgressController extends Controller {
     
     public static function createProgress($uid,$max,$pos,$data) {
         $progressManager=$this->get('bfa.progress');        
-        /*@var $progressManager \Bfa\CommonBundle\Entity\ProgressManager */
+        /*@var $progressManager \Bfa\ProgressMonitorBundle\Entity\ProgressManager */
         
         $progress=$progressManager->createProgress($uid, $max, $pos, $data);
         
@@ -50,7 +50,7 @@ class ProgressController extends Controller {
 
         $progressManager=$this->get('bfa.progress');
         
-        /*@var $progressManager \Bfa\CommonBundle\Entity\ProgressManager */
+        /*@var $progressManager \Bfa\ProgressMonitorBundle\Entity\ProgressManager */
         $progress=$progressManager->advanceProgress($uid, $num, $data);
         return $progress;
     }

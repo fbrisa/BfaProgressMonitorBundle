@@ -1,5 +1,5 @@
 services:
     bfa.progress:
-        class: Bfa\CommonBundle\Entity\ProgressManager
+        class: Bfa\ProgressMonitorBundle\Entity\ProgressManager
         arguments:
             em: "@doctrine.orm.entity_manager"
