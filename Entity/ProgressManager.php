@@ -37,6 +37,8 @@ class ProgressManager {
      * @returns Progress
      */
     public function caricaDaUid($uid) {
+        $cacheDriver = new \Doctrine\Common\Cache\ArrayCache();
+        
         $entity=$this->em->getRepository("BfaProgressMonitorBundle:Progress")->findOneByUid($uid);
         
         return $entity;
@@ -83,23 +85,39 @@ class ProgressManager {
 
             if ($progress) {
                 
+                //$oldData=$progress->getData(); 
+                // must reload
+                $oldData=$this->em->getConnection()->fetchColumn(
+                    "select data from bfa_progress where id=:id", array('id' => $progress->getId() )
+                );
+                
+                
+                if ($oldData!=null && $oldData!='') {
+                    $xdata=  json_decode($oldData,true);
+                } else {
+                    $xdata=array();
+                }
+                error_log(
+                    "*****************************************\n".
+                    $oldData.
+                    "*****************************************\n"
+                );
+                
+                
                 if (isset($data["append"])) {                    
-                    $xdata=  json_decode($progress->getData(),true);
                     if (isset($xdata["append"])) {
                         $xdata["append"].=$data["append"];
                     } else {
                         $xdata["append"]=$data["append"];
-                    }
-                    $progress->setData(json_encode($xdata));
+                    }                    
                 }
                 
                 if (isset($data["html"])) {                    
-                    $xdata=  json_decode($progress->getData(),true);
                     $xdata["html"]=$data["html"];
                     $progress->setData(json_encode($xdata));
                 }
                 
-                
+                $progress->setData(json_encode($xdata));
                 $progress->setPos($progress->getPos()+$num);
                 
                 $this->em->persist($progress);
@@ -153,16 +171,23 @@ class ProgressManager {
                 'progress' => $progress->getPos(),
                 'data' => json_decode($progress->getData(),true)
             );
+            
+            $progress->setData('');
+            $this->em->persist($progress);
+            $this->em->flush();            
         } else {
-            // il file (stranamente) non è ancora stato creato
+            // not yet created ... quite strange
             $res=array(
                 'max' => 1,
                 'progress' => 0,
-                'data' => null
+                'data' => ''
             );
         }
         
         return $res;
-    } 
+    }
         
 }
+
+
+

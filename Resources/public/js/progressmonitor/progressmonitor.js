@@ -21,7 +21,7 @@ progressWork = function (uid, progressbar, elementotesto) {
 
 
             if (res.progress < res.max) {
-                setTimeout(progressWork(uid, progressbar, elementotesto), 1000);
+                setTimeout(progressWork(uid, progressbar, elementotesto), 8000);
             } else {
                 $.ajax({
                     url: Routing.generate('bfa_progress_quit', { uid: uid }),
