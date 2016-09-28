@@ -1,4 +1,4 @@
-progressWork = function (uid, progressbar, elementotesto) {
+progressWork = function (uid, progressbar, elementotesto,callback) {
     $.ajax({
         url: Routing.generate('bfa_progress', { uid: uid }),
         type: 'POST',
@@ -10,18 +10,34 @@ progressWork = function (uid, progressbar, elementotesto) {
             progressbar.css('width', 100 * res.progress / res.max + "%");
             var v = 100 * res.progress / res.max;
             progressbar.html(v + "%");
+            
+            var d_html=null;
+            var d_append=null;
+            var d_data=null;
+            
+            
             if (res.data) {
-                if (res.data.html) {
-                    elementotesto.html(res.data.html);
-                }
                 if (res.data.append) {
-                    elementotesto.html(elementotesto.html() + res.data.append);
+                    d_append=res.data.append;
+                    elementotesto.html(elementotesto.html() + d_append);
+                }
+
+                if (res.data.html) {
+                    d_html=res.data.html;
+                    elementotesto.html(d_html);
+                }                
+                
+                if (res.data.data) {
+                    d_data=res.data.data;
                 }
             }
 
+            if (callback) {
+                callback(d_data,d_html,d_append);
+            }
 
             if (res.progress < res.max) {
-                setTimeout(progressWork(uid, progressbar, elementotesto), 8000);
+                setTimeout(function() {progressWork(uid, progressbar, elementotesto,callback);}, 1000);
             } else {
                 $.ajax({
                     url: Routing.generate('bfa_progress_quit', { uid: uid }),

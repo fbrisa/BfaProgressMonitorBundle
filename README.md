@@ -1,66 +1,59 @@
-    ************************************************************ 
-    Requirements:
-    ************************************************************ 
+# ProgressMonitorBundle
+
+
+## Requirements
 * http://symfony.com/doc/current/assetic/asset_management.html
 * https://symfony.com/doc/master/bundles/FOSJsRoutingBundle/index.html
 * jQuery
 
 
-    ************************************************************ 
-                            Installation:
-    ************************************************************ 
+## Installation
 
-1)  ************************************************************ 
-    Add to composer.json:
-    ************************************************************ 
+Add to composer.json:
+```
 "require" : {
     "bfa/progressmonitorbundle": "^1.0"
 },
+```
 
+```
 "repositories" : [{
     "type" : "vcs",
     "url" : "https://github.com/fbrisa/BfaProgressMonitorBundle.git"
 }]
+```
 
-
-2)  ************************************************************ 
-    Add to you app/AppKernel.php:
-    ************************************************************ 
+Add to you app/AppKernel.php:
+```php
 new Bfa\ProgressMonitorBundle\BfaProgressMonitorBundle(),
+```
 
 
-
-3)  ************************************************************ 
-    Execute the query to generate the table:
-    ************************************************************ 
-
+Execute the query to generate the table:
+```sql
 CREATE TABLE bfa_progress (id INT AUTO_INCREMENT NOT NULL, data_creazione DATETIME NOT NULL, max INT NOT NULL, pos INT NOT NULL, uid VARCHAR(255) NOT NULL, data VARCHAR(20000) NOT NULL, INDEX bfaprogressuid_idx (uid), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = Memory;
-    
+```
 
-4)  ************************************************************ 
-    Geenrate symlinks
-    ************************************************************ 
-
+Geenrate symlinks
 symfony2:
-    php app/console assets:install --symlink web
+```bash
+php app/console assets:install --symlink web
+```
 
 symfony3:
-    php bin/console assets:install --symlink web
+```bash
+php bin/console assets:install --symlink web
+```
 
+Add route to app/routing.tml
 
-5)  ************************************************************ 
-    Add route to app/routing.tml
-    ************************************************************ 
-
+```yml
 bfa_progress_monitor_homepage:
     resource: "@BfaProgressMonitorBundle/Controller/"
     type:     annotation
+```
 
 
-
-    ************************************************************ 
-                            Examples:
-    ************************************************************ 
-
+## Examples:
 See doc folder for a controller and twig example
     

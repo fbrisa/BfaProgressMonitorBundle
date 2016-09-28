@@ -97,14 +97,9 @@ class ProgressManager {
                 } else {
                     $xdata=array();
                 }
-                error_log(
-                    "*****************************************\n".
-                    $oldData.
-                    "*****************************************\n"
-                );
                 
                 
-                if (isset($data["append"])) {                    
+                if (isset($data["append"])) {
                     if (isset($xdata["append"])) {
                         $xdata["append"].=$data["append"];
                     } else {
@@ -116,6 +111,16 @@ class ProgressManager {
                     $xdata["html"]=$data["html"];
                     $progress->setData(json_encode($xdata));
                 }
+                
+                if (isset($data["data"])) {
+                    if (isset($xdata["data"])) {
+                        $xdata["data"][]=$data["data"];
+                    } else {
+                        $xdata["data"]=array($data["data"]);
+                    }                    
+                }
+                
+                
                 
                 $progress->setData(json_encode($xdata));
                 $progress->setPos($progress->getPos()+$num);

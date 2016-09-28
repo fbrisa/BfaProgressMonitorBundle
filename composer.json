@@ -20,12 +20,5 @@
             "Bfa\\ProgressMonitorBundle" : ""
         }
     },
-    "target-dir" : "Bfa/ProgressMonitorBundle",
-    "repositories" : [{
-    }],
-    "extra" : {
-    "branch-alias" : {
-            "dev-master" : "0.1-dev"
-        }
-    }
+    "target-dir" : "Bfa/ProgressMonitorBundle"
 }
