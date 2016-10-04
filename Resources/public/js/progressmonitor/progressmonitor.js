@@ -8,7 +8,7 @@ progressWork = function (uid, progressbar, elementotesto,callback) {
             progressbar.attr('aria-valuenow', res.progress);
             progressbar.attr('aria-valuemax', res.max);
             progressbar.css('width', 100 * res.progress / res.max + "%");
-            var v = 100 * res.progress / res.max;
+            var v = Number(100 * res.progress / res.max).toFixed(0);
             progressbar.html(v + "%");
             
             var d_html=null;
