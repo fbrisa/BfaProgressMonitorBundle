@@ -54,4 +54,18 @@ class ProgressController extends Controller {
         $progress=$progressManager->advanceProgress($uid, $num, $data);
         return $progress;
     }
+    
+    /**
+     * @Route("/{uid}/requestStop", name="bfa_progress_request_stop",options={"expose"=true})
+     */        
+    public function requestStop($uid) {
+        $progressManager=$this->get('bfa.progress');        
+        /*@var $progressManager \Bfa\ProgressMonitorBundle\Entity\ProgressManager */
+
+        $progressManager->requestStopProgress($uid);
+        
+        return new JsonResponse(array());
+    }    
+    
+    
 }

@@ -59,6 +59,15 @@ class Progress
      */
     private $data="";
     
+    /**
+     * @ORM\Column(type="boolean", options={"default": false}, nullable=false)
+     */
+    protected $requestStop = false;
+    
+    /**
+     * @ORM\Column(type="boolean", options={"default": false}, nullable=false)
+     */
+    protected $requestStopDone = false;
     
     /**
      * Constructor
@@ -223,5 +232,53 @@ class Progress
     public function getData()
     {
         return $this->data;
+    }
+
+    /**
+     * Set requestStop
+     *
+     * @param boolean $requestStop
+     *
+     * @return Progress
+     */
+    public function setRequestStop($requestStop)
+    {
+        $this->requestStop = $requestStop;
+
+        return $this;
+    }
+
+    /**
+     * Get requestStop
+     *
+     * @return boolean
+     */
+    public function getRequestStop()
+    {
+        return $this->requestStop;
+    }
+
+    /**
+     * Set requestStopDone
+     *
+     * @param boolean $requestStopDone
+     *
+     * @return Progress
+     */
+    public function setRequestStopDone($requestStopDone)
+    {
+        $this->requestStopDone = $requestStopDone;
+
+        return $this;
+    }
+
+    /**
+     * Get requestStopDone
+     *
+     * @return boolean
+     */
+    public function getRequestStopDone()
+    {
+        return $this->requestStopDone;
     }
 }

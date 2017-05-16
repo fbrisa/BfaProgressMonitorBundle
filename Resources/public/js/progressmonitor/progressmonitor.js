@@ -35,6 +35,11 @@ progressWork = function (uid, progressbar, elementotesto,callback) {
             if (callback) {
                 callback(d_data,d_html,d_append);
             }
+            
+            if (res.stoppedRequestStopDone) {
+                console.log("stoppedRequestStopDone");
+                return;
+            }
 
             if (res.progress < res.max) {
                 setTimeout(function() {progressWork(uid, progressbar, elementotesto,callback);}, 1000);
@@ -57,3 +62,16 @@ progressWork = function (uid, progressbar, elementotesto,callback) {
 };
 
 
+progressWorkRequestStop = function (uid,callback) {
+    $.ajax({
+        url: Routing.generate('bfa_progress_request_stop', { uid: uid }),
+        type: 'POST',
+        dataType: 'json',
+        data: null,
+        timeout: 600000,
+        error: null,
+        success: function (res) {
+
+        }
+    });
+}
